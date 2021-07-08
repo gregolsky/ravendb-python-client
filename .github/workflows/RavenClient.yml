@@ -34,6 +34,9 @@ jobs:
       - name: Display Python version
         run:  python -c "import sys; print(sys.version)"
 
+      - name: Set Date
+        run: sudo date -s "01/01/2021 00:00:00"
+
       - name: Download RavenDB Server
         run: wget -q -O RavenDB.tar.bz2 "https://hibernatingrhinos.com/downloads/RavenDB%20for%20Linux%20x64/latest?buildType=${{ env.RAVENDB_BUILD_TYPE }}&version=${{ matrix.serverVersion }}"
 
