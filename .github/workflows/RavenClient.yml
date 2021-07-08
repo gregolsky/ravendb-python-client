@@ -14,15 +14,13 @@ jobs:
       runs-on: ubuntu-latest
 
       env:
-        RAVENDB_TEST_SERVER_PATH: ./RavenDB/Server/Raven.Server
-        RAVENDB_TEST_HTTPS_SERVER_URL: https://localhost:8080
         RAVENDB_BUILD_TYPE: nightly
         RAVEN_License: ${{ secrets.RAVEN_LICENSE }}
 
       strategy:
         matrix:
-          python-version: ['3.6', '3.7', '3.8', '3.9' ]
-          serverVersion: [ "5.1", "5.2" ]
+          python-version: [ '3.7',]
+          serverVersion: [ "5.1" ]
         fail-fast: false
 
       steps:
@@ -52,7 +50,7 @@ jobs:
         run: ./RavenDB/Server/Raven.Server&
 
       - name: Wait for server to run
-        run: sleep 3
+        run: sleep 5
 
       - name: Run tests
         run: python -m unittest discover
