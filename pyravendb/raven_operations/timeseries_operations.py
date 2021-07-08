@@ -58,6 +58,8 @@ class GetTimeSeriesOperation(Operation):
                              f"&from={Utils.datetime_to_string(range_.from_date)}"
                              f"&to={Utils.datetime_to_string(range_.to_date)}")
 
+            console.log(self.url)
+
         def set_response(self, response):
             if response is None:
                 return None
