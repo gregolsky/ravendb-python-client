@@ -46,8 +46,8 @@ jobs:
       - name: Install Python RavenDB Client
         run: pip install pyravendb
 
-      - name: Run RDB?
-        run: ./RavenDB/Server/Raven.Server&
+      - name: Run RDB
+        run: ./RavenDB/Server/Raven.Server -c ./settings.json &
 
       - name: Wait for server to run
         run: sleep 5
