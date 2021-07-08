@@ -4,7 +4,7 @@ from pyravendb.commands.raven_commands import *
 from pyravendb.tools.utils import Utils
 from .operations import Operation
 from datetime import datetime
-
+import json
 import sys
 
 
@@ -92,8 +92,10 @@ class TimeSeriesOperation:
     def to_json(self):
         if self.appends:
             self.appends = next(Utils.sort_iterable(self.appends, key=lambda ao: ao.timestamp.timestamp()))
-        return {"Name": self.name, "Appends": [a.to_json() for a in self.appends] if self.appends else self.appends,
+        j = {"Name": self.name, "Appends": [a.to_json() for a in self.appends] if self.appends else self.appends,
                 "Deletes": [r.to_json() for r in self.removals] if self.removals else self.removals}
+        print(json.dumps(j))
+        return j
 
     class AppendOperation:
         def __init__(self, timestamp: datetime, values: List[float] or float, tag: Optional[str] = None):
@@ -113,7 +115,8 @@ class TimeSeriesOperation:
             self.tag = tag
 
         def to_json(self):
-            _dict = {"Timestamp": Utils.datetime_to_string(self.timestamp), "Values": self.values}
+            d = Utils.datetime_to_string(self.timestamp)
+            _dict = {"Timestamp": d, "Values": self.values}
             if self.tag:
                 _dict["Tag"] = self.tag
             return _dict
