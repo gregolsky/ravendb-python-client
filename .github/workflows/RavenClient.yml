@@ -49,7 +49,7 @@ jobs:
         run: pip install pyravendb
 
       - name: Run RDB?
-        run: ./RavenDB/Server/Raven.Server/run.ps1
+        run: ./RavenDB/Server/Raven.Server&
 
       - name: Run tests
         run: python -m unittest discover
