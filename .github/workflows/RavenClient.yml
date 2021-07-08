@@ -52,11 +52,8 @@ jobs:
       - name: Install Python RavenDB Client
         run: pip install pyravendb
 
-      - name: Install automatic format tool
-        run: pip install --upgrade autopep8
+      - name: Run RDB?
+        run: ./RavenDB-5.2/run.ps1
 
       - name: Run tests
         run: python -m unittest discover
-
-      - name: Run code formatting tool
-        run: autopep8 -r --in-place
