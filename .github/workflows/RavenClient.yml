@@ -55,10 +55,10 @@ jobs:
       - name: Install automatic format tool
         run: pip install --upgrade autopep8
 
-      - name: Run code formatting tool
-        run: autopep8 --in-place --recursive
-
       - run: cd ravendb-python-client
 
       - name: Run tests
         run: python -m unittest discover
+
+      - name: Run code formatting tool
+        run: autopep8 -r --in-place
