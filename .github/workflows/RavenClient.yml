@@ -47,10 +47,10 @@ jobs:
         run: pip install pyravendb
 
       - name: Run RDB
-        run: ./RavenDB/Server/Raven.Server -c ./settings.json &
+        run: (./RavenDB/Server/Raven.Server -c ./settings.json &) && python -m unittest discover
 
       - name: Wait for server to run
         run: while ! curl -vvv http://localhost:8080; do sleep 1; done
 
       - name: Run tests
-        run: python -m unittest discover
+        run: echo 1
